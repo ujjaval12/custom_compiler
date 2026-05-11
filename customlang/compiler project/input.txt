@@ -1,0 +1,48 @@
+start()
+{
+    number i;
+    number n;
+    number val;
+    number found;
+
+    n = 5;
+    found = 0;
+    i = 0;
+
+    repeat ( i < n )
+    {
+        take_input val;
+
+        if ( val > 100 )
+        {
+            print val;
+            found = 1;
+        }
+        elif ( val == 0 )
+        {
+            print 0;
+        }
+        else
+        {
+            print val;
+        }
+
+        i = i + 1;
+    }
+    until
+
+    if ( found == 1 )
+    {
+        print 1;
+    }
+    else
+    {
+        print 0;
+    }
+}
+
+150
+45
+0
+200
+33

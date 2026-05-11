@@ -1,0 +1,5 @@
+=== PHASE 3: SEMANTIC ANALYSIS ===
+
+Variable             | Type       | Value      | isArray   
+------------------------------------------------------
+result               | number     | 125        | 0         

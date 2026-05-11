@@ -1,0 +1,4 @@
+=== THREE ADDRESS CODE (TAC) ===
+
+x = 5
+t0 = 5 + 3

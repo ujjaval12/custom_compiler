@@ -1,0 +1,67 @@
+=== PHASE 5: OPTIMIZED THREE ADDRESS CODE ===
+
+Input:  phase4_tac.txt
+Output: phase5_optimized.txt
+
+Optimizations applied:
+  1. Constant Folding
+  2. Constant Propagation
+  3. Dead Code Elimination
+
+─────────────────────────────────────────
+BEFORE OPTIMIZATION:
+─────────────────────────────────────────
+=== PHASE 4: THREE ADDRESS CODE (TAC) ===
+
+x = 75  /* take_input */
+y = 50  /* take_input */
+t0 = 75 + 50
+result = 125
+print 125
+if 1 goto L0
+goto L1
+L0:
+print 1
+goto L2
+L1:
+if 0 goto L3
+goto L4
+L3:
+print 0
+goto L2
+L4:
+print 2
+L2:
+
+─────────────────────────────────────────
+AFTER OPTIMIZATION:
+─────────────────────────────────────────
+=== PHASE 4: THREE ADDRESS CODE (TAC) ===
+
+x = 75  /* take_input */
+y = 50  /* take_input */
+/* ELIMINATED: t0 = 125  /* folded: 75 + 50 */ */
+result = 125
+print 125
+if 1 goto L0
+goto L1
+L0:
+print 1
+goto L2
+L1:
+if 0 goto L3
+goto L4
+L3:
+print 0
+goto L2
+L4:
+print 2
+L2:
+
+─────────────────────────────────────────
+OPTIMIZATION SUMMARY:
+─────────────────────────────────────────
+  Constants folded:      1
+  Variables propagated:  0
+  Dead lines eliminated: 1
+  Total optimizations:   2

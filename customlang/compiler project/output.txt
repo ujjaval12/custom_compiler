@@ -1,0 +1,96 @@
+1     | start()              | MAIN                
+2     | {                    | LB                  
+3     | number               | INT                 
+4     | x                    | VAR                 
+5     | ;                    | SM                  
+
+valid declaration
+6     | number               | INT                 
+7     | y                    | VAR                 
+8     | ;                    | SM                  
+
+valid declaration
+9     | number               | INT                 
+10    | result               | VAR                 
+11    | ;                    | SM                  
+
+valid declaration
+12    | take_input           | TAKE_INPUT          
+13    | x                    | VAR                 
+14    | ;                    | SM                  
+take_input: x = 75
+[TAC] x = 75  /* take_input */
+15    | take_input           | TAKE_INPUT          
+16    | y                    | VAR                 
+17    | ;                    | SM                  
+take_input: y = 50
+[TAC] y = 50  /* take_input */
+18    | result               | VAR                 
+19    | =                    | ASSIGN              
+20    | x                    | VAR                 
+21    | +                    | PLUS                
+22    | y                    | VAR                 
+23    | ;                    | SM                  
+75 + 50 : 
+[TAC] t0 = 75 + 50
+[TAC] result = 125
+24    | print                | PRINT               
+25    | result               | VAR                 
+26    | ;                    | SM                  
+print: 125
+[TAC] print 125
+27    | if                   | IF                  
+28    | (                    | LP                  
+29    | result               | VAR                 
+30    | >                    | GT                  
+31    | 100                  | NUM                 
+32    | )                    | RP                  
+[TAC] if 1 goto L0
+[TAC] goto L1
+[TAC] L0:
+33    | {                    | LB                  
+34    | print                | PRINT               
+35    | 1                    | NUM                 
+36    | ;                    | SM                  
+print: 1
+[TAC] print 1
+37    | }                    | RB                  
+[TAC] goto L2
+[TAC] L1:
+38    | elif                 | ELIF                
+39    | (                    | LP                  
+40    | result               | VAR                 
+41    | ==                   | EEQL                
+42    | 100                  | NUM                 
+43    | )                    | RP                  
+[TAC] if 0 goto L3
+[TAC] goto L4
+[TAC] L3:
+44    | {                    | LB                  
+45    | print                | PRINT               
+46    | 0                    | NUM                 
+47    | ;                    | SM                  
+print: 0
+[TAC] print 0
+48    | }                    | RB                  
+[TAC] goto L2
+[TAC] L4:
+49    | else                 | ELSE                
+50    | {                    | LB                  
+51    | print                | PRINT               
+52    | 2                    | NUM                 
+53    | ;                    | SM                  
+print: 2
+[TAC] print 2
+54    | }                    | RB                  
+[TAC] L2:
+55    | }                    | RB                  
+
+Successful compilation
+
+--- Output files generated ---
+  Phase 1 (Lexer)    -> phase1_lexer.txt
+  Phase 2 (Parser)   -> phase2_parser.txt
+  Phase 3 (Semantic) -> phase3_semantic.txt
+  Phase 4 (TAC)      -> phase4_tac.txt
+  Phase 5 (Optimized)-> phase5_optimized.txt (run optimizer.exe)

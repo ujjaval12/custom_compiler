@@ -1,0 +1,21 @@
+=== PHASE 4: THREE ADDRESS CODE (TAC) ===
+
+x = 75  /* take_input */
+y = 50  /* take_input */
+t0 = 75 + 50
+result = 125
+print 125
+if 1 goto L0
+goto L1
+L0:
+print 1
+goto L2
+L1:
+if 0 goto L3
+goto L4
+L3:
+print 0
+goto L2
+L4:
+print 2
+L2:

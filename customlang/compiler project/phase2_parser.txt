@@ -1,0 +1,6 @@
+=== PHASE 2: SYNTAX ANALYSIS ===
+
+Rule matched: TYPE ID1 SM -> variable declaration
+Rule matched: TYPE ID1 SM -> variable declaration
+Rule matched: TYPE ID1 SM -> variable declaration
+Rule matched: program -> MAIN LB cstatement RB

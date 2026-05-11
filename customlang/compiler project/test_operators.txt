@@ -1,0 +1,13 @@
+start()
+{
+T-Number a;
+T-Number b;
+a = 10;
+b = 3;
+a | b;
+a ~ b;
+a # b;
+a % b;
+a / b;
+a ^ b;
+}
