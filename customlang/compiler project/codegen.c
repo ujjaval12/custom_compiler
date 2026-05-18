@@ -26,6 +26,9 @@
 char var_names[MAX_VARS][64];
 int  var_count = 0;
 
+char str_literals[MAX_VARS][256];
+int  str_count = 0;
+
 int var_exists(const char *name) {
     for(int i = 0; i < var_count; i++)
         if(strcmp(var_names[i], name) == 0) return 1;
@@ -74,6 +77,16 @@ void collect_vars(char lines[][MAX_LEN], int count) {
         if(!in_after) continue;
 
         char result[64], a[64], op[8], b[64];
+        char str_val[256];
+
+        if(sscanf(lines[i], "print_str %[^\n]", str_val) == 1) {
+            int exists = 0;
+            for(int k=0; k<str_count; k++) {
+                if(strcmp(str_literals[k], str_val) == 0) exists = 1;
+            }
+            if(!exists) strcpy(str_literals[str_count++], str_val);
+            continue;
+        }
 
         /* result = a op b */
         if(sscanf(lines[i], "%63s = %63s %7s %63s", result, a, op, b) == 4) {
@@ -148,7 +161,20 @@ void generate_asm(char lines[][MAX_LEN], int count, FILE *out) {
 
         /* ── print N ── */
         char print_val[64];
-        if(sscanf(line, "print %63s", print_val) == 1) {
+        char str_val[256];
+        if(sscanf(line, "print_str %[^\n]", str_val) == 1) {
+            fprintf(out, "    ; print_str %s\n", str_val);
+            int id = -1;
+            for(int k=0; k<str_count; k++) {
+                if(strcmp(str_literals[k], str_val) == 0) { id = k; break; }
+            }
+            if(id != -1) {
+                fprintf(out, "    lea rcx, [rel str%d]\n", id);
+                fprintf(out, "    call printf\n");
+            }
+            continue;
+        }
+        else if(sscanf(line, "print %63s", print_val) == 1) {
             fprintf(out, "    ; print %s\n", print_val);
             load_eax(out, print_val);
             fprintf(out, "    lea rcx, [rel fmt]\n");
@@ -269,6 +295,9 @@ int main() {
     /* .data section — declare all variables as 32-bit integers */
     fprintf(out, "section .data\n");
     fprintf(out, "    fmt db \"%%d\", 10, 0   ; printf format string\n");
+    for(int i = 0; i < str_count; i++) {
+        fprintf(out, "    str%d db %s, 10, 0\n", i, str_literals[i]);
+    }
     for(int i = 0; i < var_count; i++) {
         /* skip labels and numbers */
         if(is_label(var_names[i])) continue;

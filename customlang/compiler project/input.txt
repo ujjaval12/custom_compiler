@@ -1,48 +1,24 @@
 start()
 {
-    number i;
-    number n;
-    number val;
-    number found;
+    print "--- Datatypes & Loops ---";
+    
+    number count;
+    decimal pi_approx;
+    symbol letter;
 
-    n = 5;
-    found = 0;
-    i = 0;
+    count = 1;
+    pi_approx = 3;
+    letter = 65;
 
-    repeat ( i < n )
+    print "Starting repeat loop...";
+
+    repeat (count <= 3)
     {
-        take_input val;
-
-        if ( val > 100 )
-        {
-            print val;
-            found = 1;
-        }
-        elif ( val == 0 )
-        {
-            print 0;
-        }
-        else
-        {
-            print val;
-        }
-
-        i = i + 1;
+        print "Loop iteration:";
+        print count;
+        count = count + 1;
     }
     until
 
-    if ( found == 1 )
-    {
-        print 1;
-    }
-    else
-    {
-        print 0;
-    }
+    print "Loop finished successfully!";
 }
-
-150
-45
-0
-200
-33

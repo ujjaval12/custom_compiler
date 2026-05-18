@@ -1,90 +1,85 @@
 1     | start()              | MAIN                
 2     | {                    | LB                  
-3     | number               | INT                 
-4     | x                    | VAR                 
+3     | print                | PRINT               
+4     | "--- Datatypes & Loops ---" | STRING_LITERAL      
 5     | ;                    | SM                  
-
-valid declaration
+print_str: "--- Datatypes & Loops ---"
+[TAC] print_str "--- Datatypes & Loops ---"
 6     | number               | INT                 
-7     | y                    | VAR                 
+7     | count                | VAR                 
 8     | ;                    | SM                  
 
 valid declaration
-9     | number               | INT                 
-10    | result               | VAR                 
+9     | decimal              | FLOAT               
+10    | pi_approx            | VAR                 
 11    | ;                    | SM                  
 
 valid declaration
-12    | take_input           | TAKE_INPUT          
-13    | x                    | VAR                 
+12    | symbol               | CHAR                
+13    | letter               | VAR                 
 14    | ;                    | SM                  
-take_input: x = 75
-[TAC] x = 75  /* take_input */
-15    | take_input           | TAKE_INPUT          
-16    | y                    | VAR                 
-17    | ;                    | SM                  
-take_input: y = 50
-[TAC] y = 50  /* take_input */
-18    | result               | VAR                 
-19    | =                    | ASSIGN              
-20    | x                    | VAR                 
-21    | +                    | PLUS                
-22    | y                    | VAR                 
-23    | ;                    | SM                  
-75 + 50 : 
-[TAC] t0 = 75 + 50
-[TAC] result = 125
-24    | print                | PRINT               
-25    | result               | VAR                 
+
+valid declaration
+15    | count                | VAR                 
+16    | =                    | ASSIGN              
+17    | 1                    | NUM                 
+18    | ;                    | SM                  
+[TAC] count = 1
+19    | pi_approx            | VAR                 
+20    | =                    | ASSIGN              
+21    | 3                    | NUM                 
+22    | ;                    | SM                  
+[TAC] pi_approx = 3
+23    | letter               | VAR                 
+24    | =                    | ASSIGN              
+25    | 65                   | NUM                 
 26    | ;                    | SM                  
-print: 125
-[TAC] print 125
-27    | if                   | IF                  
-28    | (                    | LP                  
-29    | result               | VAR                 
-30    | >                    | GT                  
-31    | 100                  | NUM                 
-32    | )                    | RP                  
-[TAC] if 1 goto L0
-[TAC] goto L1
-[TAC] L0:
-33    | {                    | LB                  
-34    | print                | PRINT               
-35    | 1                    | NUM                 
-36    | ;                    | SM                  
+[TAC] letter = 65
+27    | print                | PRINT               
+28    | "Starting repeat loop..." | STRING_LITERAL      
+29    | ;                    | SM                  
+print_str: "Starting repeat loop..."
+[TAC] print_str "Starting repeat loop..."
+30    | repeat               | WHILE               
+31    | (                    | LP                  
+32    | count                | VAR                 
+33    | <=                   | LTE                 
+34    | 3                    | NUM                 
+35    | )                    | RP                  
+36    | {                    | LB                  
+37    | print                | PRINT               
+38    | "Loop iteration:"    | STRING_LITERAL      
+39    | ;                    | SM                  
+print_str: "Loop iteration:"
+[TAC] print_str "Loop iteration:"
+40    | print                | PRINT               
+41    | count                | VAR                 
+42    | ;                    | SM                  
 print: 1
 [TAC] print 1
-37    | }                    | RB                  
-[TAC] goto L2
+43    | count                | VAR                 
+44    | =                    | ASSIGN              
+45    | count                | VAR                 
+46    | +                    | PLUS                
+47    | 1                    | NUM                 
+48    | ;                    | SM                  
+1 + 1 : 
+[TAC] t0 = 1 + 1
+[TAC] count = 2
+49    | }                    | RB                  
+50    | until                | WHILE_END           
+[TAC] L0:
+[TAC] if NOT 1 goto L1
+[TAC]   body = 1390693504
 [TAC] L1:
-38    | elif                 | ELIF                
-39    | (                    | LP                  
-40    | result               | VAR                 
-41    | ==                   | EEQL                
-42    | 100                  | NUM                 
-43    | )                    | RP                  
-[TAC] if 0 goto L3
-[TAC] goto L4
-[TAC] L3:
-44    | {                    | LB                  
-45    | print                | PRINT               
-46    | 0                    | NUM                 
-47    | ;                    | SM                  
-print: 0
-[TAC] print 0
-48    | }                    | RB                  
-[TAC] goto L2
-[TAC] L4:
-49    | else                 | ELSE                
-50    | {                    | LB                  
+repeat loop executed, condition was: 1
+Loop body value: 1390693504
 51    | print                | PRINT               
-52    | 2                    | NUM                 
+52    | "Loop finished successfully!" | STRING_LITERAL      
 53    | ;                    | SM                  
-print: 2
-[TAC] print 2
+print_str: "Loop finished successfully!"
+[TAC] print_str "Loop finished successfully!"
 54    | }                    | RB                  
-[TAC] L2:
-55    | }                    | RB                  
 
 Successful compilation
 

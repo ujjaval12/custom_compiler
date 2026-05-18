@@ -2,4 +2,7 @@
 
 Variable             | Type       | Value      | isArray   
 ------------------------------------------------------
-result               | number     | 125        | 0         
+count                | number     | 1          | 0         
+pi_approx            | number     | 3          | 0         
+letter               | number     | 65         | 0         
+count                | number     | 2          | 0         

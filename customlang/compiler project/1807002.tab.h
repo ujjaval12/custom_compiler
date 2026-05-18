@@ -111,7 +111,8 @@ extern int yydebug;
     size_of = 312,                 /* size_of  */
     CALL = 313,                    /* CALL  */
     PRINT = 314,                   /* PRINT  */
-    TAKE_INPUT = 315               /* TAKE_INPUT  */
+    TAKE_INPUT = 315,              /* TAKE_INPUT  */
+    STRING_LITERAL = 316           /* STRING_LITERAL  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -125,7 +126,7 @@ union YYSTYPE
         int number;
         char *string;
 
-#line 129 "1807002.tab.h"
+#line 130 "1807002.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

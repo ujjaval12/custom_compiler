@@ -103,6 +103,7 @@ digit [0-9]+
 
 "print"      { trace("PRINT");      return PRINT;      }
 "take_input" { trace("TAKE_INPUT"); return TAKE_INPUT; }
+\"[^\"]*\"   { trace("STRING_LITERAL"); yylval.string=strdup(yytext); return STRING_LITERAL; }
 
 {var} {
 	trace("VAR");

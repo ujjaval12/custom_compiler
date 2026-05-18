@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CustomLang Compiler Suite</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                <h1>CustomLang Compiler</h1>
+            </div>
+            <button id="runBtn" class="primary-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                Build & Run
+            </button>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Panel: Code Editor -->
+            <div class="panel editor-panel">
+                <div class="panel-header">
+                    <h2>Source Code (input.txt)</h2>
+                </div>
+                <div class="editor-container">
+                    <textarea id="codeEditor" spellcheck="false">start()
+{
+    number i;
+    number n;
+    number val;
+    number found;
+
+    n = 5;
+    found = 0;
+    i = 0;
+
+    repeat ( i < n )
+    {
+        take_input val;
+
+        if ( val > 100 )
+        {
+            print val;
+            found = 1;
+        }
+        elif ( val == 0 )
+        {
+            print 0;
+        }
+        else
+        {
+            print val;
+        }
+
+        i = i + 1;
+    }
+    until
+
+    if ( found == 1 )
+    {
+        print 1;
+    }
+    else
+    {
+        print 0;
+    }
+}
+
+150
+45
+0
+200
+33</textarea>
+                </div>
+            </div>
+
+            <!-- Right Panel: Output Viewer -->
+            <div class="panel output-panel">
+                <div class="tabs">
+                    <button class="tab active" data-target="console">Console</button>
+                    <button class="tab" data-target="phase1_lexer.txt">Lexer</button>
+                    <button class="tab" data-target="phase2_parser.txt">Parser</button>
+                    <button class="tab" data-target="phase3_semantic.txt">Semantic</button>
+                    <button class="tab" data-target="phase4_tac.txt">TAC</button>
+                    <button class="tab" data-target="phase5_optimized.txt">Optimizer</button>
+                    <button class="tab" data-target="phase6_assembly.asm">Assembly</button>
+                    <button class="tab" data-target="phase7_final_output.txt">Final Output</button>
+                </div>
+                
+                <div class="output-container relative">
+                    <!-- Loading Overlay -->
+                    <div id="loader" class="loader-overlay hidden">
+                        <div class="spinner"></div>
+                        <span>Compiling...</span>
+                    </div>
+
+                    <!-- Output Views -->
+                    <div id="console" class="output-view active"></div>
+                    <div id="phase1_lexer.txt" class="output-view"></div>
+                    <div id="phase2_parser.txt" class="output-view"></div>
+                    <div id="phase3_semantic.txt" class="output-view"></div>
+                    <div id="phase4_tac.txt" class="output-view"></div>
+                    <div id="phase5_optimized.txt" class="output-view"></div>
+                    <div id="phase6_assembly.asm" class="output-view"></div>
+                    <div id="phase7_final_output.txt" class="output-view highlight-output"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

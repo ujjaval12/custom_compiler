@@ -161,7 +161,7 @@
 %token<number> NUM 
 %token<string> VAR FUNC_STR
 %token<string> IF ELIF ELSE MAIN INT FLOAT DOUBLE CHAR LP RP LB RB CM SM PLUS MINUS MULT DIV POW ASSIGN COL WHILE WHILE_END BREAK DEFAULT CASE SWITCH SWITCH_END inc dec MOD LT GT LTE GTE EEQL NEQL AND OR NOT XOR
-%token<string> SIN COS TAN SQRT LOG LOG2 LN FACTORIAL ARRAY size_of CALL PRINT TAKE_INPUT
+%token<string> SIN COS TAN SQRT LOG LOG2 LN FACTORIAL ARRAY size_of CALL PRINT TAKE_INPUT STRING_LITERAL
 %expect 208
 %type <string> para
 %type <string> TYPE
@@ -371,7 +371,13 @@ statement: SM { $$ = 0; }
 		printf("print: %d\n", $2);
 		sprintf(tac_buf, "print %d", $2);
 		emit_tac(tac_buf);
-		$$ = $2;
+		$$ = 0;
+	}
+	| PRINT STRING_LITERAL SM {
+		printf("print_str: %s\n", $2);
+		sprintf(tac_buf, "print_str %s", $2);
+		emit_tac(tac_buf);
+		$$ = 0;
 	}
 	| TAKE_INPUT VAR SM         {
 							int id = get_Var_Id($2);

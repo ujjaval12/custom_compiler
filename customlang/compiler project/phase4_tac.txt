@@ -1,21 +1,16 @@
 === PHASE 4: THREE ADDRESS CODE (TAC) ===
 
-x = 75  /* take_input */
-y = 50  /* take_input */
-t0 = 75 + 50
-result = 125
-print 125
-if 1 goto L0
-goto L1
-L0:
+print_str "--- Datatypes & Loops ---"
+count = 1
+pi_approx = 3
+letter = 65
+print_str "Starting repeat loop..."
+print_str "Loop iteration:"
 print 1
-goto L2
+t0 = 1 + 1
+count = 2
+L0:
+if NOT 1 goto L1
+  body = 1390693504
 L1:
-if 0 goto L3
-goto L4
-L3:
-print 0
-goto L2
-L4:
-print 2
-L2:
+print_str "Loop finished successfully!"
